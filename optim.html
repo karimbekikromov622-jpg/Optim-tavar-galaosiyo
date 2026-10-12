@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="uz" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SifatStore - Zamonaviy Xarid Portali</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased font-sans min-h-screen flex flex-col justify-between">
+
+    <header class="sticky top-0 z-40 glass-header border-b border-slate-200 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="scrollToSection('home')">
+                    <div
+                        class="w-10 h-10 bg-gradient-to-tr from-brand-600 to-indigo-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-md shadow-brand-500/20">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                    </div>
+                    <span
+                        class="text-2xl font-extrabold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">Optim
+                        tavar galaosiyo 💯</span>
+                </div>
+
+                <nav class="hidden md:flex space-x-8 text-sm font-semibold text-slate-600">
+                    <a href="#home" onclick="scrollToSection('home')"
+                        class="hover:text-brand-600 transition-colors py-2">Bosh sahifa</a>
+                    <a href="#products" onclick="scrollToSection('products')"
+                        class="hover:text-brand-600 transition-colors py-2">Mahsulotlar</a>
+                    <a href="#promos" onclick="scrollToSection('promos')"
+                        class="hover:text-brand-600 transition-colors py-2">Aksiyalar</a>
+                    <a href="#about" onclick="scrollToSection('about')"
+                        class="hover:text-brand-600 transition-colors py-2">Biz haqimizda</a>
+                    <a href="#contact" onclick="scrollToSection('contact')"
+                        class="hover:text-brand-600 transition-colors py-2">Aloqa</a>
+                </nav>
+
+                <button id="cartBtn" onclick="toggleCartModal(true)"
+                    class="relative p-3 rounded-full bg-slate-100 hover:bg-brand-50 hover:text-brand-600 transition-all text-slate-700 focus:outline-none">
+                    <i class="fa-solid fa-cart-shopping text-lg"></i>
+                    <span id="cartBadge"
+                        class="absolute -top-1 -right-1 bg-red-500 text-white font-bold text-xs w-5 h-5 rounded-full flex items-center justify-center border-2 border-white transform scale-0 transition-transform duration-200">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section id="home"
+        class="relative py-16 md:py-24 overflow-hidden bg-gradient-to-b from-slate-100 via-slate-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span
+                        class="inline-block px-4 py-1.5 bg-brand-100 text-brand-700 font-semibold text-xs rounded-full uppercase tracking-wide mb-4">Eng
+                        so'nggi sarpo to'plami va ko'rpa to'shaklar</span>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 leading-tight mb-6">
+                        Zamonaviy <span
+                            class="bg-gradient-to-r from-brand-600 to-indigo-600 bg-clip-text text-transparent">Sarpolar
+                            toplami</span>
+                    </h1>
+                    <p class="text-slate-600 text-lg mb-8 leading-relaxed">
+                        Sizga kerakli bo'lgan barcha sarpo to'plami va ko'rpa to'shaklar mahsulotlarni eng maqbul
+                        narxlarda toping. Tez va ishonchli yetkazib berish xizmati bilan!
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#products" onclick="scrollToSection('products')"
+                            class="px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-2xl shadow-lg shadow-brand-600/30 transition-all hover:scale-105 flex items-center gap-2">
+                            <span>Xaridni boshlash</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#promos" onclick="scrollToSection('promos')"
+                            class="px-8 py-4 bg-white border border-slate-200 hover:border-slate-300 text-slate-700 font-bold rounded-2xl transition-all hover:bg-slate-50">
+                            Aksiyalar
+                        </a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="w-full h-96 rounded-3xl overflow-hidden shadow-2xl relative bg-slate-200">
+                        <img src="bosh saxifa.jpg" alt="Hero Banner" class="w-full h-full object-cover">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-8">
+                            <div class="text-white">
+                                <p class="text-sm font-medium text-brand-200">Yangi to'plam 2026</p>
+                                <h3 class="text-2xl font-bold">Premium sarpo to'plami va ko'rpa to'shaklar</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main id="products" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <h2 class="text-3xl font-extrabold text-slate-900 sm:text-4xl mb-3">Bizning Mashhur Tovarlarimiz</h2>
+            <p class="text-slate-500 text-base">Eng so'nggi rusumdagi sifatli mahsulotlar ro'yxati bilan tanishing va
+                qulay narxda xarid qiling.</p>
+        </div>
+
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        </div>
+    </main>
+
+    <section id="promos" class="bg-slate-900 text-white py-16 my-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="p-6 rounded-2xl bg-slate-800/50 border border-slate-700/50">
+                    <div
+                        class="w-14 h-14 bg-brand-500/10 text-brand-400 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Tezkor Yetkazib Berish</h4>
+                    <p class="text-slate-400 text-sm">O'zbekiston bo'ylab barcha viloyat va tumanlarga tez fursatda
+                        yetkazamiz.</p>
+                </div>
+                <div class="p-6 rounded-2xl bg-slate-800/50 border border-slate-700/50">
+                    <div
+                        class="w-14 h-14 bg-brand-500/10 text-brand-400 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Kafolatlangan Sifat</h4>
+                    <p class="text-slate-400 text-sm">Barcha tovarlarimizga rasmiy 1 yillik kafolat va xizmat ko'rsatish
+                        mavjud.</p>
+                </div>
+                <div class="p-6 rounded-2xl bg-slate-800/50 border border-slate-700/50">
+                    <div
+                        class="w-14 h-14 bg-brand-500/10 text-brand-400 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">24/7 Qo'llab-quvvatlash</h4>
+                    <p class="text-slate-400 text-sm">Har qanday savol va muammolar bo'yicha bizning mutaxassislarimiz
+                        yordam beradi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-slate-900 text-slate-400 border-t border-slate-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div
+                            class="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center text-white font-bold">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <span class="text-xl font-bold text-white">Optim tavar galaosiyo 💯</span>
+                    </div>
+                    <p class="text-sm text-slate-400">Bizning onlayn do'konimiz sizga eng sifatli mahsulotlarni va a'lo
+                        darajadagi xizmatni taklif etadi.</p>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold mb-4">Bo'limlar</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#home" class="hover:text-white transition-colors">Bosh sahifa</a></li>
+                        <li><a href="#products" class="hover:text-white transition-colors">Tovarlar katalogi</a></li>
+                        <li><a href="#promos" class="hover:text-white transition-colors">Aksiyalar</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold mb-4">Biz bilan aloqa</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><i class="fa-solid fa-phone mr-2"></i> +998 (93) 982-02-67</li>
+                        <li><i class="fa-solid fa-envelope mr-2"></i> info@optim.uz</li>
+                        <li><i class="fa-solid fa-location-dot mr-2"></i> Buxoro sh., Yangi turmush tumani,Galasyo
+                            bozori.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold mb-4">Ijtimoiy tarmoqlar</h5>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="w-10 h-10 bg-slate-800 hover:bg-brand-600 text-white rounded-full flex items-center justify-center transition-colors"><i
+                                class="fa-brands fa-telegram"></i></a>
+                        <a href="#"
+                            class="w-10 h-10 bg-slate-800 hover:bg-brand-600 text-white rounded-full flex items-center justify-center transition-colors"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="#"
+                            class="w-10 h-10 bg-slate-800 hover:bg-brand-600 text-white rounded-full flex items-center justify-center transition-colors"><i
+                                class="fa-brands fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 pt-8 text-center text-xs text-slate-500">
+                &copy; 2026 Optim tavar galaosiyo 💯. Barcha huquqlar himoyalangan.
+            </div>
+        </div>
+    </footer>
+
+    <div id="cartModal" class="fixed inset-0 z-50 invisible transition-all duration-300">
+        <div id="cartBackdrop" onclick="toggleCartModal(false)"
+            class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300 backdrop-blur-sm"></div>
+
+        <div id="cartDrawer"
+            class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+            <div class="p-6 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-cart-shopping text-brand-600 text-xl"></i>
+                    <h3 class="text-xl font-bold text-slate-900">Sizning Savatchangiz</h3>
+                </div>
+                <button onclick="toggleCartModal(false)"
+                    class="p-2 text-slate-400 hover:text-slate-600 rounded-full hover:bg-slate-200 transition-colors">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <div id="cartItemsList" class="p-6 flex-1 overflow-y-auto custom-scrollbar space-y-4">
+            </div>
+
+            <div class="p-6 border-t border-slate-100 bg-slate-50 space-y-4">
+                <div class="space-y-2 text-sm">
+                    <div class="flex justify-between text-slate-600">
+                        <span>Tovarlar narxi:</span>
+                        <span id="subtotalPrice" class="font-semibold text-slate-800">0 so'm</span>
+                    </div>
+                    <div class="flex justify-between text-slate-600">
+                        <span>Yetkazib berish:</span>
+                        <span id="deliveryPriceText" class="font-semibold text-slate-800">Bepul</span>
+                    </div>
+                    <div class="border-t border-slate-200 pt-2 flex justify-between text-base font-bold text-slate-900">
+                        <span>Jami summa:</span>
+                        <span id="totalCartPrice" class="text-brand-600 text-lg">0 so'm</span>
+                    </div>
+                </div>
+
+                <button id="checkoutBtn" onclick="openCheckoutModal()"
+                    class="w-full py-4 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl shadow-lg shadow-brand-600/30 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <span>Rasmiylashtirish</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="checkoutModal"
+        class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-8 transform transition-all">
+            <button onclick="closeCheckoutModal()"
+                class="absolute top-6 right-6 text-slate-400 hover:text-slate-600 p-2 rounded-full hover:bg-slate-100 transition-colors">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <h3 class="text-2xl font-extrabold text-slate-900 mb-2">Buyurtmani Rasmiylashtirish</h3>
+            <p class="text-sm text-slate-500 mb-6">Ma'lumotlarni to'ldiring va buyurtmangizni tasdiqlang.</p>
+
+            <form id="checkoutForm" onsubmit="handleOrderSubmit(event)" class="space-y-5">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Ismingiz va Familiyangiz
+                        *</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-user absolute left-4 top-3.5 text-slate-400"></i>
+                        <input type="text" id="custName"
+                            class="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all text-sm">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Telefon raqamingiz *</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-phone absolute left-4 top-3.5 text-slate-400"></i>
+                        <input type="tel" id="custPhone" required placeholder="+998 (93) 982-02-67"
+                            class="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all text-sm">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Olosh / Yetkazib berish turi
+                        *</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label
+                            class="border-2 border-brand-500 bg-brand-50/30 rounded-2xl p-3 flex items-center cursor-pointer select-none transition-all"
+                            id="methodPickupLabel">
+                            <input type="radio" name="deliveryMethod" value="pickup" checked
+                                onchange="toggleDeliveryOptions('pickup')"
+                                class="text-brand-600 focus:ring-brand-500 h-4 w-4">
+                            <div class="ml-3">
+                                <span class="block text-xs font-bold text-slate-900"><i
+                                        class="fa-solid fa-shop mr-1"></i> Punktu</span>
+                                <span class="block text-[11px] text-slate-500">Olib ketish</span>
+                            </div>
+                        </label>
+                        <label
+                            class="border-2 border-slate-200 rounded-2xl p-3 flex items-center cursor-pointer select-none transition-all"
+                            id="methodDeliveryLabel">
+                            <input type="radio" name="deliveryMethod" value="delivery"
+                                onchange="toggleDeliveryOptions('delivery')"
+                                class="text-brand-600 focus:ring-brand-500 h-4 w-4">
+                            <div class="ml-3">
+                                <span class="block text-xs font-bold text-slate-900"><i
+                                        class="fa-solid fa-truck mr-1"></i> Yetkazib berish</span>
+                                <span class="block text-[11px] text-slate-500">Uyingizgacha</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="pickupSection" class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Olib ketish punktini tanlang
+                        *</label>
+                    <select id="pickupPointSelect"
+                        class="w-full py-3 px-3 rounded-xl border border-slate-200 focus:border-brand-500 outline-none text-sm bg-white">
+                        <option value="Aniq atres (SifatStore Punkt)">39°51'26.4"N 64°26'29.2"E (SifatStore Punkt)
+                        </option>
+                    </select>
+                </div>
+
+                <div id="deliverySection" class="hidden bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Viloyat va Shahar/Tuman *</label>
+                        <input type="text" id="delRegion" placeholder="Masalan: Toshkent shahri, Yunusobod tumani"
+                            class="w-full px-3 py-2.5 rounded-xl border border-slate-200 focus:border-brand-500 outline-none text-sm bg-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Ko'cha va uy manzili *</label>
+                        <input type="text" id="delAddress" placeholder="Masalan: Amir Temur ko'chasi 15-uy, 42-xonadon"
+                            class="w-full px-3 py-2.5 rounded-xl border border-slate-200 focus:border-brand-500 outline-none text-sm bg-white">
+                    </div>
+                </div>
+
+                <div class="bg-slate-100 p-4 rounded-2xl flex items-center justify-between">
+                    <span class="text-xs font-bold text-slate-600 uppercase">Jami To'lov Summasi:</span>
+                    <span id="finalCheckoutPrice" class="text-xl font-extrabold text-brand-600">0 so'm</span>
+                </div>
+
+                <button type="submit"
+                    class="w-full py-4 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-2xl shadow-lg shadow-brand-600/30 transition-all text-center">
+                    Buyurtmani Tasdiqlash
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="smsModal"
+        class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-md">
+        <div
+            class="bg-slate-900 text-white rounded-3xl max-w-md w-full p-6 border border-slate-800 shadow-2xl relative animate-bounce-short">
+
+            <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-green-500/20 text-green-400 rounded-full flex items-center justify-center">
+                        <i class="fa-solid fa-comment-sms text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm">SMS Bildirishnoma (Simulatsiya)</h4>
+                        <p class="text-[11px] text-slate-400">Yangi buyurtma tushdi!</p>
+                    </div>
+                </div>
+                <span class="text-xs text-slate-500">Hozirgina</span>
+            </div>
+
+            <div
+                class="my-6 p-4 bg-slate-800/90 rounded-2xl border border-slate-700 text-sm font-mono leading-relaxed space-y-2 text-slate-200">
+                <div class="text-green-400 font-bold mb-2">📲 SMS YUBORILDI!</div>
+                <div id="smsText" class="whitespace-pre-wrap text-xs sm:text-sm">
+                </div>
+            </div>
+
+            <p class="text-xs text-slate-400 text-center mb-6">Sizning buyurtmangiz qabul qilindi. Operator tez orada
+                bog'lanadi!</p>
+
+            <button onclick="closeSmsModal()"
+                class="w-full py-3.5 bg-green-600 hover:bg-green-500 font-bold text-white rounded-xl shadow-lg transition-all">
+                Tushundim / Yopish
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const productsData = [
+            {
+                id: 1,
+                name: "Prostina",
+                price: 150000,
+                image: "1.jpg",
+                description: "1 kishilik va 2 kishiliklar bor"
+            },
+            {
+                id: 2,
+                name: "Prostina",
+                price: 150000,
+                image: "2.jpg",
+                description: "1 kishilik va 2 kishiliklar bor"
+            },
+            {
+                id: 3,
+                name: "Pardalar",
+                price: 200000,
+                image: "3.jpg",
+                description: "50 dan 200mingacha metiri"
+            },
+            {
+                id: 4,
+                name: "Ko'rpacha",
+                price: 150000,
+                image: "4.jpg",
+                description: "eniga:0.5m bo'yiga:2,5m"
+            },
+            {
+                id: 5,
+                name: "Yastuq",
+                price: 60000,
+                image: "5.jpg",
+                description: "Eniga:0,60m bo'yiga:0,60"
+            },
+            {
+                id: 6,
+                name: "Ko'rpacha",
+                price: 150000,
+                image: "6.jpg",
+                description: "eniga:0.6m bo'yiga:3m"
+            }
+        ];
+
+        let cart = [];
+
+        function formatPrice(amount) {
+            return new Intl.NumberFormat('uz-UZ').format(amount) + " so'm";
+        }
+
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = productsData.map(product => `
+                <div class="bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col justify-between group">
+                    <div>
+                        <div class="relative overflow-hidden h-52 bg-slate-100">
+                            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-bold text-slate-700 shadow-sm">
+                                ${product.category}
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">${product.name}</h3>
+                            <p class="text-xs text-slate-500 mb-4 line-clamp-2">${product.description}</p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 flex items-center justify-between border-t border-slate-50 mt-auto">
+                        <div>
+                            <span class="block text-[10px] uppercase font-bold text-slate-400">Narxi</span>
+                            <span class="text-base font-extrabold text-slate-900">${formatPrice(product.price)}</span>
+                        </div>
+                        <button onclick="addToCart(${product.id})" class="p-3 bg-brand-50 text-brand-600 hover:bg-brand-600 hover:text-white rounded-2xl transition-all font-semibold flex items-center gap-2">
+                            <i class="fa-solid fa-plus text-sm"></i>
+                            <span class="text-xs">Savatga</span>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleCartModal(open) {
+            const modal = document.getElementById('cartModal');
+            const backdrop = document.getElementById('cartBackdrop');
+            const drawer = document.getElementById('cartDrawer');
+
+            if (open) {
+                modal.classList.remove('invisible');
+                setTimeout(() => {
+                    backdrop.classList.remove('opacity-0');
+                    drawer.classList.remove('translate-x-full');
+                }, 10);
+            } else {
+                backdrop.classList.add('opacity-0');
+                drawer.classList.add('translate-x-full');
+                setTimeout(() => {
+                    modal.classList.add('invisible');
+                }, 300);
+            }
+        }
+
+        function addToCart(productId) {
+            const existing = cart.find(item => item.id === productId);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                const product = productsData.find(p => p.id === productId);
+                cart.push({ ...product, quantity: 1 });
+            }
+            updateCartUI();
+            toggleCartModal(true);
+        }
+
+        function updateQuantity(productId, delta) {
+            const item = cart.find(i => i.id === productId);
+            if (item) {
+                item.quantity += delta;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(i => i.id !== productId);
+                }
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartItemsList = document.getElementById('cartItemsList');
+            const cartBadge = document.getElementById('cartBadge');
+            const subtotalPriceEl = document.getElementById('subtotalPrice');
+            const totalCartPriceEl = document.getElementById('totalCartPrice');
+            const finalCheckoutPriceEl = document.getElementById('finalCheckoutPrice');
+            const checkoutBtn = document.getElementById('checkoutBtn');
+
+            const totalItemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartBadge.innerText = totalItemsCount;
+            if (totalItemsCount > 0) {
+                cartBadge.classList.remove('scale-0');
+            } else {
+                cartBadge.classList.add('scale-0');
+            }
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            subtotalPriceEl.innerText = formatPrice(subtotal);
+            totalCartPriceEl.innerText = formatPrice(subtotal);
+            if (finalCheckoutPriceEl) finalCheckoutPriceEl.innerText = formatPrice(subtotal);
+
+            if (cart.length === 0) {
+                checkoutBtn.disabled = true;
+                cartItemsList.innerHTML = `
+                    <div class="text-center py-12">
+                        <i class="fa-solid fa-cart-arrow-down text-5xl text-slate-300 mb-4"></i>
+                        <p class="text-slate-500 font-medium">Savatchingiz hali bo'sh</p>
+                        <p class="text-xs text-slate-400 mt-1">Harid qilish uchun tovarlarni qo'shing</p>
+                    </div>
+                `;
+            } else {
+                checkoutBtn.disabled = false;
+                cartItemsList.innerHTML = cart.map(item => `
+                    <div class="flex items-center justify-between bg-slate-50 p-3 rounded-2xl border border-slate-100">
+                        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-xl bg-white">
+                        <div class="flex-1 mx-3">
+                            <h4 class="text-xs font-bold text-slate-800 line-clamp-1">${item.name}</h4>
+                            <p class="text-xs text-brand-600 font-extrabold mt-1">${formatPrice(item.price)}</p>
+                        </div>
+                        <div class="flex items-center gap-2 bg-white px-2 py-1 rounded-xl border border-slate-200">
+                            <button onclick="updateQuantity(${item.id}, -1)" class="w-6 h-6 text-slate-600 hover:bg-slate-100 rounded-md flex items-center justify-center text-xs font-bold">-</button>
+                            <span class="text-xs font-bold w-4 text-center">${item.quantity}</span>
+                            <button onclick="updateQuantity(${item.id}, 1)" class="w-6 h-6 text-slate-600 hover:bg-slate-100 rounded-md flex items-center justify-center text-xs font-bold">+</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function toggleDeliveryOptions(method) {
+            const pickupSection = document.getElementById('pickupSection');
+            const deliverySection = document.getElementById('deliverySection');
+            const pickupLabel = document.getElementById('methodPickupLabel');
+            const deliveryLabel = document.getElementById('methodDeliveryLabel');
+
+            if (method === 'pickup') {
+                pickupSection.classList.remove('hidden');
+                deliverySection.classList.add('hidden');
+                pickupLabel.classList.add('border-brand-500', 'bg-brand-50/30');
+                pickupLabel.classList.remove('border-slate-200');
+                deliveryLabel.classList.remove('border-brand-500', 'bg-brand-50/30');
+                deliveryLabel.classList.add('border-slate-200');
+            } else {
+                pickupSection.classList.add('hidden');
+                deliverySection.classList.remove('hidden');
+                deliveryLabel.classList.add('border-brand-500', 'bg-brand-50/30');
+                deliveryLabel.classList.remove('border-slate-200');
+                pickupLabel.classList.remove('border-brand-500', 'bg-brand-50/30');
+                pickupLabel.classList.add('border-slate-200');
+            }
+        }
+
+        function openCheckoutModal() {
+            if (cart.length === 0) return;
+            toggleCartModal(false);
+            document.getElementById('checkoutModal').classList.remove('hidden');
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkoutModal').classList.add('hidden');
+        }
+
+        function handleOrderSubmit(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('custName').value.trim();
+            const phone = document.getElementById('custPhone').value.trim();
+            const method = document.querySelector('input[name="deliveryMethod"]:checked').value;
+
+            let deliveryAddressText = "";
+
+            if (method === 'pickup') {
+                const pickupPoint = document.getElementById('pickupPointSelect').value;
+                deliveryAddressText = `Olib ketish punkti: ${pickupPoint}`;
+            } else {
+                const region = document.getElementById('delRegion').value.trim();
+                const address = document.getElementById('delAddress').value.trim();
+                if (!region || !address) {
+                    alert("Iltimos, yetkazib berish manzilini to'liq kiriting!");
+                    return;
+                }
+                deliveryAddressText = `Yetkazib berish manzili: ${region}, ${address}`;
+            }
+
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const itemsListText = cart.map(i => `${i.name} (${i.quantity} dona)`).join(', ');
+
+            const smsContent = `Mijoz: ${name}\nTel: ${phone}\n\nTovarlar: ${itemsListText}\n\nJami: ${formatPrice(totalAmount)}\n\nUsul: ${deliveryAddressText}`;
+
+            document.getElementById('smsText').innerText = smsContent;
+
+            closeCheckoutModal();
+            document.getElementById('smsModal').classList.remove('hidden');
+
+            cart = [];
+            updateCartUI();
+            document.getElementById('checkoutForm').reset();
+            toggleDeliveryOptions('pickup');
+        }
+
+        function closeSmsModal() {
+            document.getElementById('smsModal').classList.add('hidden');
+        }
+
+        function scrollToSection(id) {
+            const section = document.getElementById(id);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        window.onload = function () {
+            renderProducts();
+            updateCartUI();
+        };
+    </script>
+</body>
+
+</html>
